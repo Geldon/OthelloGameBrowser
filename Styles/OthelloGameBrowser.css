@@ -1,0 +1,178 @@
+﻿.othelloGameViewer {
+    float: left;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.clear {
+    clear: both;
+}
+.othelloCanvas{}
+.currentMove{}
+
+.othelloControlWrapper {
+    width: 170px;
+    margin: 0px auto 0px auto;
+}
+
+.othelloCanvasControl 
+{
+    background: transparent url(../Images/othelloBlackBG.jpg) left top repeat-x;
+    display: block;
+    margin: 5px auto 0px auto;
+    padding: 0px 0px 0px 0px;
+    -moz-border-radius: 5px;
+    float: left;
+    border-radius: 5px;
+}
+
+a.othelloButton {
+    text-decoration: none;
+    color: #ffffff;
+    font-family: Verdana;
+    font-weight: bold;
+    display: block;
+    font-size: 12px;
+    padding: 3px 20px 3px 20px;
+    margin: 0px 0px 0px 0px;
+    background: transparent url(../Images/othelloBlackBG.jpg) left top repeat-x;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.othelloCanvasControl a {
+    text-decoration: none;
+    padding: 5px 0px 5px 0px;
+    width: 40px;
+    height: 20px;
+    vertical-align: middle;
+    text-align: center;
+    display: block;
+    border-left: 1px solid #101010;
+    background-position: center center;
+    background-repeat: no-repeat;
+    float: left;
+}
+
+.othelloCanvasControl a:first-child {
+    border-left: 0px none #101010;
+}
+
+.othelloCanvasControl{
+    list-style: none;
+}
+
+.othelloCanvasControl li{
+    border-left: 1px solid #252525;
+    float: left;
+    list-style: none;
+}
+
+.othelloCanvasControl li:first-child{
+    border-left: 0px none #252525;
+}
+
+.othelloCanvasControl a.fastBack {
+    background-image: url(../Images/fbwArrows.png);
+}
+
+.othelloCanvasControl a.back {
+    background-image: url(../Images/bwArrow.png);
+}
+
+.othelloCanvasControl a.forward {
+    background-image: url(../Images/fwArrow.png);
+}
+
+.othelloCanvasControl a.fastForward {
+    background-image: url(../Images/ffwArrows.png);
+}
+
+.othelloCanvasControl li.mouseDown {
+    /*background: transparent url(../images/menuBGhover.jpg) left top repeat-x;*/
+}
+
+.othelloCanvasControl a:hover{
+    opacity: 0.5;
+}
+
+.othelloCanvasControl li.mouseDown a:hover{
+    opacity: 1;
+}
+
+.othelloCanvasControl li.mouseDown a.fastBack {
+    background-image: url(../Images/fbwArrowsBlack.png);
+}
+
+.othelloCanvasControl li.mouseDown a.back {
+    background-image: url(../Images/bwArrowBlack.png);
+}
+
+.othelloCanvasControl li.mouseDown a.forward {
+    background-image: url(../Images/fwArrowBlack.png);
+}
+
+.othelloCanvasControl li.mouseDown a.fastForward {
+    background-image: url(../Images/ffwArrowsBlack.png);
+}
+
+.othelloGameViewer .currentMoveInfo > div{
+    float: left;
+}
+
+.othelloGameViewer .currentMoveInfo .moveNumber {
+    width: 30%;
+    height: 10px;
+}
+
+.othelloGameViewer .currentMoveInfo .moveNumber > span {
+    margin-left: 20px;
+}
+
+.othelloGameViewer .currentMoveInfo .result {
+    width: 40%;
+    text-align: center;
+}
+
+.othelloGameViewer .currentMoveInfo .playerToMove {
+    width: 30%;
+    text-align: right;
+}
+
+.othelloGameViewer .currentMoveInfo .playerToMove.black > div 
+{
+    background-color: black;
+}
+
+.othelloGameViewer .currentMoveInfo .playerToMove.white > div 
+{
+    background-color: white;
+}
+
+.othelloGameViewer .currentMoveInfo .playerToMove > div 
+{
+    width: 10px;
+    height: 10px;
+    margin: 2px 20px 2px 0px;
+    float: right;
+    border: 1px solid #CBCBCB;
+}
+
+.othelloGameWrapper {
+    width: 340px;
+    margin: 0px auto 0px auto;
+}
+
+.othelloTranscriptControl {
+    margin-top: 20px;
+    float: left;
+}
+
+.othelloTranscriptControl textarea{
+    margin-bottom: 10px; 
+}
+
+.othelloTranscriptControl a {
+    width: 140px;
+    margin: 0px auto 0px auto;
+    text-align: center;
+}

@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Othello Game Browser</title>
+    <link href="Styles/OthelloGameBrowser.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery-1.6.min.js" type="text/javascript"></script>
+    <script src="Scripts/OthelloGameBrowser.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        /*
+            Below follows an example of how one can use OthelloGameBrowser.js. It's written for the canvas element 
+            and therefore only works for browsers supporting HTML5. I recommend using an Java applet or something
+            similar as a fallback, simply place it inside the canvas tag of each browser you include and it should
+            be displayed if the program fails to obtain the graphical context of the canvas element.
+
+            I've provided some simple markup with associated css to place two game browsers on a page. The javascript
+            below finds all canvas elements with the "othelloCanvas" class placed on them and tries to initiate a 
+            function that takes the following parameters:
+
+            the canvas itself,
+            it's graphical context,
+            an element containing the buttons (links) used to browse the game
+            and finally the transcript of the game itself.
+
+            When writing this the controls consist of four links marked with the classes: 
+            "fastBack", "back", "forward" and "fastForward".
+            Output is also rendered in the element with the "currentMoveInfo" class attached to it. 
+            
+            If there is a need to change this, for whatever reason, the programmer that modifies the markup will 
+            have to modify OthelloGameBrowser.js in order for the program to continue to function. The same goes for 
+            any other additional functionality added. Such as running through the moves by holding down the mouse 
+            button i.e.
+            
+            The board is drawn on the canvas using ratios based on the width of the canvas, which makes for easy
+            manipulation of the size of the board. Simply change the width and height of the canvas and the game 
+            drawn will be adjusted automatically.
+
+            When the "InitiateOthelloCanvas" function is called it returns a method which can be used to change
+            the game drawn in the canvas. To use it, call it with a transcript of the next game you wish to display.
+
+            Feel free to use and manipulate this code as you see fit, it can certainly be optimized in many ways and 
+            might benefit from being gzipped and minified.
+            
+            
+            Hope you find it useful
+            
+            /Christian Gårdebrink cgardebrink@gmail.com 
+        */
+
+        $(document).ready(function () {
+            $('.othelloCanvas').each(function () {
+                if ($(this)[0].getContext) {
+                    var changeGameFunction =
+                        InitiateOthelloCanvas(
+                            $(this)[0],
+                            $(this)[0].getContext('2d'),
+                            $(this).closest('.othelloGameViewer').find('.othelloCanvasControl'),
+                            $(this).closest('.othelloGameViewer').find('.othelloTranscriptControl textarea').val()
+                        );
+
+                    $(this).closest('.othelloGameViewer').find('.othelloTranscriptControl a.othelloButton').click(function () {
+                        changeGameFunction(
+                            $(this).closest('.othelloTranscriptControl').find('textarea').val()
+                        );
+
+                        return false;
+                    });
+                } else {
+                    $(this).closest('.othelloGameViewer').find('.othelloCanvasControl').hide();
+                    $(this).closest('.othelloGameViewer').find('.currentMoveInfo').hide();
+                    $(this).closest('.othelloGameViewer').find('.othelloTranscriptControl').hide();
+                    //If a fallback game browser like a Java applet or other object is placed within the canvas it will be shown if the canvas element can't be displayed.
+                }
+            });
+        });
+    </script>
+</head>
+    <body>
+        <!--Game #1-->
+
+        <div class="othelloGameWrapper">
+            <div class="othelloGameViewer">
+                <canvas class="othelloCanvas" width="340" height="340">
+                </canvas>
+                <div class="currentMoveInfo">
+                    <div class="moveNumber">
+                        <span></span>
+                    </div>
+                    <div class="result">
+                    </div>
+                    <div class="playerToMove">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="othelloControlWrapper">
+                    <ul class="othelloCanvasControl">
+                        <li><a class="fastBack" href=""></a></li>
+                        <li><a class="back" href=""></a></li>
+                        <li><a class="forward" href=""></a></li>
+                        <li><a class="fastForward" href=""></a></li>
+                    </ul>
+                </div>
+                <div class="othelloTranscriptControl">
+                    <textarea cols="40" rows="5">F5 D6 C3 D3 C4 F4 E3 F3 E6 F6 G4 E2 D2 C5 G3 B4 E1 C2 B3 D1 C1 A2 B5 A5 B6 C7 C6 F2 G5 F1 G1 G6 E7 H4 H3 H6 D7 H5 G2 D8 F7 G8 F8 E8 A7 B2 A1 B1 A3 B7 C8 A4 A8 H1 H2 B8 H8 H7 G7 A6</textarea>
+                    <a href="" class="othelloButton">
+                        Change Transcript
+                    </a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+        
+        <!--Game #2-->
+
+        <div class="othelloGameWrapper">
+            <div class="othelloGameViewer">
+                <canvas class="othelloCanvas" width="200" height="200">
+                </canvas>
+                <div class="currentMoveInfo">
+                    <div class="moveNumber">
+                        <span></span>
+                    </div>
+                    <div class="result">
+                    </div>
+                    <div class="playerToMove">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="clear"></div>
+                <div class="othelloControlWrapper">
+                    <ul class="othelloCanvasControl">
+                        <li><a class="fastBack" href=""></a></li>
+                        <li><a class="back" href=""></a></li>
+                        <li><a class="forward" href=""></a></li>
+                        <li><a class="fastForward" href=""></a></li>
+                    </ul>
+                </div>
+                <div class="othelloTranscriptControl">
+                    <textarea cols="40" rows="5">C4 E3 F5 E6 F6 C5 F4 G5 G6 F7 E2 F2 D6 F3 G3 H3 H5 D2 B5 C6 E8 B3 D3 E7 C1 C7 D8 H6 E1 D1 C2 H4 F1 B6 A4 G4 C3 A5 A6 B4 A3 F8 G8 B2 H2 H1 A1 B1 A2 G2 D7 B7 H7 G1 A8 A7 C8 H8 G7 B8</textarea>
+                    <a href="" class="othelloButton">
+                        Change Transcript
+                    </a>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </body>
+</html>
